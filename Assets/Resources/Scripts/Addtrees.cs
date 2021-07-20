@@ -22,6 +22,7 @@ public class Addtrees : MonoBehaviour
         InstantiateRandomPosition("Conifers/RenderPipelineSupport/BuiltinRP/Prefabs/PFConiferMediumBOTD", 500, 0f);
         InstantiateRandomPosition("Conifers/RenderPipelineSupport/BuiltinRP/Prefabs/PFConiferTallBOTD", 500, 0f);
         InstantiateRandomPosition("Conifers/RenderPipelineSupport/BuiltinRP/Prefabs/PFConiferBareBOTD", 500, 0f);
+        InstantiateRandomPosition("Conifers/RockMeshVariant", 200, 0f);
     }
 
     public void InstantiateRandomPosition(string Resourse, int Amount, float AddedHeight)
