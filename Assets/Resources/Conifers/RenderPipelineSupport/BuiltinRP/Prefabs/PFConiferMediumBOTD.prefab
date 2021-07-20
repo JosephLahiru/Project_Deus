@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4071390273635838}
   - component: {fileID: 205829865164112152}
   m_Layer: 0
-  m_Name: PF Conifer Medium BOTD
+  m_Name: PFConiferMediumBOTD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
