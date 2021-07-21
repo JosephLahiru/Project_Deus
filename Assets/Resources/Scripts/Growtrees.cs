@@ -16,6 +16,8 @@ public class Growtrees : MonoBehaviour
         maxSize = Random.Range((float)2.0, (float)6.0);
         growRate = Random.Range((float)0.2, (float)0.6);
         startTime = Time.time;
+
+        this.transform.Rotate(0f, Random.Range(0f, 350f), 0f);
     }
 
     void Update()

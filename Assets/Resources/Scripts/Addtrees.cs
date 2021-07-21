@@ -18,10 +18,10 @@ public class Addtrees : MonoBehaviour
         TerrainRight = TerrainLeft + TerrainWidth;
         TerrainTop = TerrainBottom + TerrainLength;
 
-        InstantiateRandomPosition("TreePrefabs/PFConiferSmallBOTD", 500, 0f);
-        InstantiateRandomPosition("TreePrefabs/PFConiferMediumBOTD", 500, 0f);
-        InstantiateRandomPosition("TreePrefabs/PFConiferTallBOTD", 500, 0f);
-        InstantiateRandomPosition("TreePrefabs/PFConiferBareBOTD", 500, 0f);
+        InstantiateRandomPosition("TreePrefabs/PFConiferSmallBOTD", 400, 0f);
+        InstantiateRandomPosition("TreePrefabs/PFConiferMediumBOTD", 400, 0f);
+        InstantiateRandomPosition("TreePrefabs/PFConiferTallBOTD", 400, 0f);
+        InstantiateRandomPosition("TreePrefabs/PFConiferBareBOTD", 400, 0f);
         InstantiateRandomPosition("Conifers/RockMeshVariant", 200, 0f);
     }
 
