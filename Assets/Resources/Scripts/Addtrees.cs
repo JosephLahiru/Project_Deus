@@ -6,6 +6,7 @@ public class Addtrees : MonoBehaviour
 {
     public Terrain WorldTerrain;
     public LayerMask TerrainLayer;
+    public LayerMask WaterLayer;
     public static float TerrainLeft, TerrainRight, TerrainTop, TerrainBottom, TerrainWidth, TerrainLength, TerrainHeight;
 
     public void Awake()
@@ -42,13 +43,17 @@ public class Addtrees : MonoBehaviour
             if(Physics.Raycast(new Vector3(RandomPositionX, 9999f, RandomPositionZ), Vector3.down, out hit, Mathf.Infinity, TerrainLayer))
             {
                 terrainHeight = hit.point.y;
+                //Debug.Log(terrainHeight);
             }
 
-            RandomPositionY = terrainHeight + AddedHeight;
+            if(terrainHeight > 104)
+            {
+                RandomPositionY = terrainHeight + AddedHeight;
 
-            randomPosition = new Vector3(RandomPositionX, RandomPositionY, RandomPositionZ);
+                randomPosition = new Vector3(RandomPositionX, RandomPositionY, RandomPositionZ);
 
-            Instantiate(Resources.Load(Resourse, typeof(GameObject)), randomPosition, Quaternion.identity);
+                Instantiate(Resources.Load(Resourse, typeof(GameObject)), randomPosition, Quaternion.identity);
+            }
 
         } while (i < Amount);
         
