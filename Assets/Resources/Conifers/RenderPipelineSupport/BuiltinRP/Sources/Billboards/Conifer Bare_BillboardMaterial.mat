@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Conifer Bare_BillboardMaterial
   m_Shader: {fileID: 4800000, guid: f08c3c20fcac1433a9a930a6a399d5ac, type: 3}
   m_ShaderKeywords: _EMISSION
@@ -40,5 +41,6 @@ Material:
     - _ViewDependency: 0.8
     - _WindStrength: 0.58
     m_Colors:
-    - _HueVariation: {r: 0, g: 0.9, b: 0.8255172, a: 0.1}
+    - _HueVariation: {r: 0.3537736, g: 1, b: 0.47777566, a: 0.1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+  m_BuildTextureStacks: []
