@@ -15,7 +15,7 @@ MonoBehaviour:
   maxSize: 0
   growRate: 0
   scale: 0
-  colorVariation: {r: 0, g: 0, b: 0, a: 0}
+  startTime: 0
 --- !u!1001 &2933141418447315763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26,6 +26,22 @@ PrefabInstance:
     - target: {fileID: 1214657917099862, guid: abdd95d0229d64588b03d2806d9cc19a, type: 3}
       propertyPath: m_Name
       value: PFConiferMediumBOTD
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214657917099862, guid: abdd95d0229d64588b03d2806d9cc19a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487772876627174, guid: abdd95d0229d64588b03d2806d9cc19a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579866807121280, guid: abdd95d0229d64588b03d2806d9cc19a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661850992318236, guid: abdd95d0229d64588b03d2806d9cc19a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4071390273635838, guid: abdd95d0229d64588b03d2806d9cc19a, type: 3}
       propertyPath: m_RootOrder
