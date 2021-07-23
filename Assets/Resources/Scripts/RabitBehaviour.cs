@@ -7,8 +7,15 @@ public class RabitBehaviour : MonoBehaviour
     public float moveSpeed = 6;
 
     Rigidbody rigidBody;
-    Vector3 velocity;
     Vector3 moveingPos;
+    private float waitTime;
+    public float startWaitTime = 3f;
+
+    //public Transform[] moveSpot;
+    public Transform moveSpot;
+    //private int randomSpot;
+
+    public float minX, maxX, minZ, maxZ;
 
     Animator animator;
     void Start()
@@ -16,28 +23,33 @@ public class RabitBehaviour : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
-        moveingPos = new Vector3(Random.Range(-300, 450), transform.position.y, Random.Range(-300, 400));
+        waitTime = startWaitTime;
+
+        //randomSpot = Random.Range(0, moveSpot.Length);
+        moveingPos = new Vector3(Random.Range(minX, maxX), transform.position.y, Random.Range(minZ, maxZ));
+        //moveingPos = new Vector3(moveSpot[randomSpot].position.x, transform.position.y, moveSpot[randomSpot].position.z);
     }
 
     void Update()
     {
-        //if (Input.GetKey("i"))
-        //{
-        //    animator.SetBool("isGuarding", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isGuarding", false);
-        //}
-
         Vector3 newLock = new Vector3(moveingPos.x, transform.position.y, moveingPos.x);
         transform.LookAt(newLock);
 
-        if (transform.position.x > (newLock.x-10) && transform.position.x < (newLock.x+10) && transform.position.z > (newLock.z-10) && transform.position.z < (newLock.z+10))
+        if (Vector3.Distance(transform.position, newLock) < 0.2f)
         {
-            animator.SetBool("isRunning", false);
-            //yield return new WaitForSeconds(3);
-            moveingPos = new Vector3(Random.Range(-300, 450), transform.position.y, Random.Range(-300, 400));
+            if(waitTime >= 0)
+            {
+                animator.SetBool("isRunning", false);
+                waitTime -= Time.deltaTime;
+            }
+            else
+            {
+                //moveingPos = new Vector3(Random.Range(-300, 450), transform.position.y, Random.Range(-300, 400));
+                //randomSpot = Random.Range(0, moveSpot.Length);
+                moveingPos = new Vector3(Random.Range(minX, maxX), transform.position.y, Random.Range(minZ, maxZ));
+                waitTime = startWaitTime;
+            }
+            
             //Range is off
         }
         else
