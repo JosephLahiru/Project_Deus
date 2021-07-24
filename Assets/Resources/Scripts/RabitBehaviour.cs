@@ -64,7 +64,7 @@ public class RabitBehaviour : MonoBehaviour
         }
         else
         {
-            rigidBody.MovePosition(rigidBody.position + (transform.forward * moveSpeed) * Time.deltaTime);
+            //rigidBody.MovePosition(rigidBody.position + (transform.forward * moveSpeed) * Time.deltaTime);
             animator.SetBool("isRunning", true);
         }
 
@@ -91,9 +91,14 @@ public class RabitBehaviour : MonoBehaviour
                     }
                     else
                     {
-                        Vector3 accDir = new Vector3(dirToTarget.x * 2, 0, dirToTarget.z * 2);
-                        transform.LookAt(Location - (accDir));
-                        print("[Collided; Dist to Target : " + dstToTarget + "]");
+                        //float angle = Vector3.Angle(transform.position, dirToTarget);
+                        print("[Collided; Angle to the Target : " + dirToTarget + "]");
+                        //Vector3 accDir = new Vector3(dirToTarget.x * 2, 0, dirToTarget.z * 2);
+                        //transform.LookAt(Location - (accDir));
+
+                        //transform.Rotate(Vector3.up * 50f * Time.deltaTime);
+
+                        //print("[Collided; Dist to Target : " + dstToTarget + "]");
                     }
                 }
             }
