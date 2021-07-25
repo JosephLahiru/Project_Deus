@@ -14,6 +14,7 @@ public class RabitBehaviour : MonoBehaviour
 
     Rigidbody rigidBody;
     Vector3 moveingPos;
+    float dirNum;
 
     private float waitTime;
     public float startWaitTime = 5f;
@@ -64,7 +65,7 @@ public class RabitBehaviour : MonoBehaviour
         }
         else
         {
-            //rigidBody.MovePosition(rigidBody.position + (transform.forward * moveSpeed) * Time.deltaTime);
+            rigidBody.MovePosition(rigidBody.position + (transform.forward * moveSpeed) * Time.deltaTime);
             animator.SetBool("isRunning", true);
         }
 
@@ -79,8 +80,8 @@ public class RabitBehaviour : MonoBehaviour
             for (int i = 0; i < obstaclesInViewRadius.Length; i++)
             {
                 Transform target = obstaclesInViewRadius[i].transform;
-                Vector3 dirToTarget = (target.position - transform.position).normalized;
-                if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+                Vector3 dirToTarget = (target.position - transform.position);
+                if (Vector3.Angle(transform.forward, dirToTarget.normalized) < viewAngle / 2)
                 {
                     float dstToTarget = Vector3.Distance(transform.position, target.position);
 
@@ -95,8 +96,17 @@ public class RabitBehaviour : MonoBehaviour
                         print("[Collided; Angle to the Target : " + dirToTarget + "]");
                         //Vector3 accDir = new Vector3(dirToTarget.x * 2, 0, dirToTarget.z * 2);
                         //transform.LookAt(Location - (accDir));
+                        dirNum = AngleDir(transform.forward, dirToTarget, transform.up);
 
-                        //transform.Rotate(Vector3.up * 50f * Time.deltaTime);
+                        if (dirNum == -1)
+                        {
+                            transform.Rotate(Vector3.up * 100f * Time.deltaTime);
+                        }
+                        else if(dirNum == 1)
+                        {
+                            transform.Rotate(Vector3.up * -100f * Time.deltaTime);
+                        }
+                        
 
                         //print("[Collided; Dist to Target : " + dstToTarget + "]");
                     }
@@ -118,4 +128,24 @@ public class RabitBehaviour : MonoBehaviour
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
+
+    float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
+    {
+        Vector3 perp = Vector3.Cross(fwd, targetDir);
+        float dir = Vector3.Dot(perp, up);
+
+        if (dir > 0f)
+        {
+            return 1f;
+        }
+        else if (dir < 0f)
+        {
+            return -1f;
+        }
+        else
+        {
+            return 0f;
+        }
+    }
+
 }
