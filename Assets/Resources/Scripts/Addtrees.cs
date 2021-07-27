@@ -52,7 +52,8 @@ public class Addtrees : MonoBehaviour
 
                 randomPosition = new Vector3(RandomPositionX, RandomPositionY, RandomPositionZ);
 
-                Instantiate(Resources.Load(Resourse, typeof(GameObject)), randomPosition, Quaternion.identity);
+                GameObject newTree = (GameObject)Instantiate(Resources.Load(Resourse, typeof(GameObject)), randomPosition, Quaternion.identity);
+                newTree.transform.parent = transform;
             }
 
         } while (i < Amount);

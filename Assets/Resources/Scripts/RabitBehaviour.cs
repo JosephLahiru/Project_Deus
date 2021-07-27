@@ -11,6 +11,7 @@ public class RabitBehaviour : MonoBehaviour
     public float viewAngle;
 
     public LayerMask obstacleMask;
+    public LayerMask foodMask;
 
     Rigidbody rigidBody;
     Vector3 moveingPos;
