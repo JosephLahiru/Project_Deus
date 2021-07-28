@@ -9,8 +9,14 @@ public class Addtrees : MonoBehaviour
     public LayerMask WaterLayer;
     public static float TerrainLeft, TerrainRight, TerrainTop, TerrainBottom, TerrainWidth, TerrainLength, TerrainHeight;
 
+    public int surfaceIndex = 0;
+
+    private TerrainData terrainData;
+
     public void Awake()
     {
+        terrainData = WorldTerrain.terrainData;
+
         TerrainLeft = WorldTerrain.transform.position.x;
         TerrainBottom = WorldTerrain.transform.position.z;
         TerrainWidth = WorldTerrain.terrainData.size.x;
@@ -28,6 +34,7 @@ public class Addtrees : MonoBehaviour
 
     public void InstantiateRandomPosition(string Resourse, int Amount, float AddedHeight)
     {
+
         var i = 0;
         float terrainHeight = 0f;
         RaycastHit hit;
@@ -46,7 +53,12 @@ public class Addtrees : MonoBehaviour
                 //Debug.Log(terrainHeight);
             }
 
-            if(terrainHeight > 104)
+            Vector3 location = new Vector3(RandomPositionX, terrainHeight, RandomPositionZ);
+
+            surfaceIndex = GetMainTexture(location);
+            print("index: " + surfaceIndex.ToString() + ", name: " + terrainData.terrainLayers[surfaceIndex].name);
+
+            if (terrainHeight > 104 && terrainData.terrainLayers[surfaceIndex].name == "Grass")
             {
                 RandomPositionY = terrainHeight + AddedHeight;
 
@@ -58,5 +70,41 @@ public class Addtrees : MonoBehaviour
 
         } while (i < Amount);
         
+    }
+
+    private float[] GetTextureMix(Vector3 WorldPos)
+    {
+
+        int mapX = (int)(((WorldPos.x - TerrainLeft) / TerrainWidth) * terrainData.alphamapWidth);
+        int mapZ = (int)(((WorldPos.z - TerrainBottom) / TerrainLength) * terrainData.alphamapHeight);
+
+        float[,,] splatmapData = terrainData.GetAlphamaps(mapX, mapZ, 1, 1);
+
+        float[] cellMix = new float[splatmapData.GetUpperBound(2) + 1];
+
+        for (int n = 0; n < cellMix.Length; n++)
+        {
+            cellMix[n] = splatmapData[0, 0, n];
+        }
+        return cellMix;
+    }
+
+    private int GetMainTexture(Vector3 WorldPos)
+    {
+
+        float[] mix = GetTextureMix(WorldPos);
+
+        float maxMix = 0;
+        int maxIndex = 0;
+
+        for (int n = 0; n < mix.Length; n++)
+        {
+            if (mix[n] > maxMix)
+            {
+                maxIndex = n;
+                maxMix = mix[n];
+            }
+        }
+        return maxIndex;
     }
 }

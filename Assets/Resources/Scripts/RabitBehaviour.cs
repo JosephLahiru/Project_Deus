@@ -21,7 +21,6 @@ public class RabitBehaviour : MonoBehaviour
     public float startWaitTime = 5f;
 
     //public Transform[] moveSpot;
-    public Transform moveSpot;
     //private int randomSpot;
 
     public float minX, maxX, minZ, maxZ;
